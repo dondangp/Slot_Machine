@@ -1,5 +1,7 @@
 # Slot Machine Project
-MAX_LINES = 3 # conventional to keep in capitals
+MAX_LINES = 3 # conventional to keep global values in capitals
+MAX_BET = 100 
+MIN_BET = 1
 
 def deposit():
     while True:
@@ -32,9 +34,25 @@ def get_number_of_lines():
     
     return lines
 
+def get_bet():
+    while True:
+        amount = input("What would you like to bet? $")
+        if amount.isdigit(): # Check for valid number 
+            amount = int(amount) # String converted to integer
+        
+            if MIN_BET <= amount <= MAX_BET:
+                break
+            else:
+                print("Max must be between" + str(MIN_BET) + "to" + str(MAX_BET))
+        else:
+            print("Please enter a number.")
+    
+    return amount
+
 def main():
     balance = deposit()
     lines = get_number_of_lines()
+    bet = get_bet()
 
 main()
 
